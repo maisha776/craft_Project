@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time to Craft - Art & Craft E-Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Load Tailwind CSS for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- Animated Background Layer -->
+    <div class="animated-background"></div>
+
+    <!-- MAIN HEADER / NAVIGATION -->
+    <header id="main-header" class="glass fixed top-0 left-0 right-0 z-50 p-4 flex flex-col justify-between items-center rounded-none shadow-xl transition-all duration-300">
+        
+        <!-- Top Row -->
+        <div class="flex flex-col md:flex-row justify-between w-full items-center">
+            
+            <!-- Logo and Mobile Cart -->
+            <div class="flex justify-between w-full md:w-auto items-center mb-4 md:mb-0">
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white neon-glow cursor-pointer" onclick="scrollToSection(event, 'home-section')">
+                    Time to Craft
+                </h1>
+                <button id="cart-icon-mobile" class="relative glass-btn rounded-full p-3 shadow-lg md:hidden" onclick="toggleCartModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-count-mobile" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-900 transform translate-x-1/2 -translate-y-1/2 bg-white rounded-full">0</span>
+                </button>
+            </div>
+            
+            <!-- Main Navigation Links -->
+            <nav class="flex space-x-4 md:space-x-8 text-lg font-medium mb-4 md:mb-0">
+                <a href="#home-section" class="nav-link text-white hover:text-teal-300 transition duration-300" onclick="scrollToSection(event, 'home-section')">Home</a>
+                <a href="#products-section" class="nav-link text-white hover:text-teal-300 transition duration-300" onclick="scrollToSection(event, 'products-section')">Products</a>
+                <a href="#about-section" class="nav-link text-white hover:text-teal-300 transition duration-300" onclick="scrollToSection(event, 'about-section')">About</a>
+                <a href="#contact-section" class="nav-link text-white hover:text-teal-300 transition duration-300" onclick="scrollToSection(event, 'contact-section')">Contact</a>
+            </nav>
+
+            <!-- Cart Icon (Desktop) -->
+            <button id="cart-icon-desktop" class="relative glass-btn rounded-full p-3 shadow-lg hidden md:block" onclick="toggleCartModal()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span id="cart-count-desktop" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-blue-900 transform translate-x-1/2 -translate-y-1/2 bg-white rounded-full">0</span>
+            </button>
+        </div>
+        
+        <!-- Bottom Row: Category Navigation -->
+        <div id="category-nav-container" class="w-full pt-3 border-t border-white/30 mt-4 hidden sm:block transition-all duration-300">
+            <nav id="category-nav" class="flex flex-wrap justify-center space-x-4 text-sm font-medium">
+                <!-- Category links injected here -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="relative z-10"> 
+
+        <!-- HOME SECTION (Full Screen Slideshow) -->
+        <section id="home-section">
+            <div id="slideshow-container" class="absolute inset-0 w-full h-full z-0">
+                <!-- Slides will be injected here by JS -->
+            </div>
+
+            <!-- Slideshow Controls -->
+            <button id="prev-btn" class="slideshow-nav-btn absolute left-4 md:left-8 top-1/2 transform -translate-y-1/2 p-4 rounded-full glass text-white z-30" onclick="changeSlide(-1)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button id="next-btn" class="slideshow-nav-btn absolute right-4 md:right-8 top-1/2 transform -translate-y-1/2 p-4 rounded-full glass text-white z-30" onclick="changeSlide(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+            <!-- Indicators -->
+            <div id="slideshow-indicators" class="absolute bottom-10 left-0 right-0 flex justify-center space-x-4 z-30">
+                <!-- Indicators generated by JS -->
+            </div>
+        </section>
+
+        <!-- PRODUCTS SECTION -->
+        <section id="products-section" class="pt-20 pb-16 px-4 md:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-4xl md:text-5xl font-light mb-4 drop-shadow-xl text-white">The Collection</h2>
+                <p class="text-lg opacity-80 text-white">Curated categories for every creative soul.</p>
+            </div>
+            
+            <div id="category-sections">
+                <!-- Products injected here by JS -->
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about-section" class="min-h-[50vh] pt-20 pb-16 text-center px-4 md:px-8">
+            <h2 class="text-4xl md:text-5xl font-light mb-6 drop-shadow-xl text-white">Our Vision</h2>
+            <div class="glass p-8 max-w-4xl mx-auto">
+                <p class="text-lg mb-4 opacity-80">
+                     The Time to Craft is where digital precision meets traditional soul. We specialize in bringing you Picture perfect moments, intricate Wall Crafts, delicate Bridal accessories, and Memory Frames that hold time still.<br>Hi there! I'm the creator behind The Art of Creativity. For as long as I can remember, I've loved making things with my hands. What started as a hobby has grown into a diverse collection of handmade treasures. From the delicate details of a Bridal Pen to the bold statement of a Wall Craft piece, I pour my passion into every item. I believe that art shouldn't just be looked at—it should be part of your story. I hope my Memory Frames help you cherish your best moments and my Pictures bring joy to your walls. Thank you for supporting handmade art!
+                </p>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="min-h-[50vh] pt-20 pb-16 text-center px-4 md:px-8">
+            <h2 class="text-4xl md:text-5xl font-light mb-6 drop-shadow-xl text-white">Get In Touch</h2>
+            <form class="glass p-8 max-w-2xl mx-auto space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-300 transition" />
+                <input type="email" placeholder="Your Email" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-300 transition" />
+                <textarea rows="4" placeholder="Your Message" class="w-full p-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-teal-300 transition"></textarea>
+                <button type="submit" class="glass-btn checkout-btn w-full px-4 py-3 rounded-lg font-semibold shadow-lg" onclick="event.preventDefault(); showCustomAlert('Message Sent!')">
+                    Send Message
+                </button>
+            </form>
+        </section>
+
+    </main>
+    
+    <!-- FOOTER -->
+    <footer class="glass mt-auto py-12 text-center text-sm border-t border-white/30 relative z-20">
+        <div class="container mx-auto px-4">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Branding -->
+                <div class="flex flex-col items-center md:items-start">
+                    <h3 class="text-xl font-bold neon-glow mb-4">Time to Craft</h3>
+                    <p class="opacity-70 max-w-xs">&copy; 2025 All rights reserved.</p>
+                </div>
+                <!-- Links -->
+                <div class="flex flex-col items-center">
+                    <h4 class="text-lg font-semibold mb-4 text-teal-300">Quick Links</h4>
+                    <div class="flex space-x-4">
+                        <a href="#about-section" class="hover:text-teal-300 transition" onclick="scrollToSection(event, 'about-section')">About</a>
+                        <span class="opacity-30">|</span>
+                        <a href="#" class="hover:text-teal-300 transition">Privacy</a>
+                        <span class="opacity-30">|</span>
+                        <a href="#contact-section" class="hover:text-teal-300 transition" onclick="scrollToSection(event, 'contact-section')">Support</a>
+                    </div>
+                </div>
+                <!-- Socials & Contact -->
+                <div class="flex flex-col items-center md:items-end">
+                    <h4 class="text-lg font-semibold mb-4 text-teal-300">Connect With Us</h4>
+                    <p class="opacity-80 mb-4 font-mono">+8801767175750</p>
+                    <div class="flex space-x-4">
+                        <!-- Email Icon -->
+                        <a href="maisha.mohsin245@gmail.com" class="p-2 glass rounded-full hover:bg-white/20 transition transform hover:scale-110 border border-white/10" aria-label="Email">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        </a>
+                        <!-- Facebook Icon -->
+                        <a href="https://www.facebook.com/maisha.binte.mohsin.2024" class="p-2 glass rounded-full hover:bg-white/20 transition transform hover:scale-110 border border-white/10" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <!-- WhatsApp Icon -->
+                        <a href="+8801767175750" class="p-2 glass rounded-full hover:bg-white/20 transition transform hover:scale-110 border border-white/10" aria-label="WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                        <!-- Telegram Icon -->
+                        <a href="+8801767175750" class="p-2 glass rounded-full hover:bg-white/20 transition transform hover:scale-110 border border-white/10" aria-label="Telegram">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-4 opacity-50 text-xs">Powered by creativity.</div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div id="cart-modal" class="fixed inset-0 z-[60] hidden" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="glass w-full max-w-lg p-6 relative">
+                <h3 class="text-2xl font-bold mb-4 border-b pb-2 border-white/30">Your Cart</h3>
+                <div id="cart-items-container" class="min-h-[100px] max-h-96 overflow-y-auto pr-2 mb-4"></div>
+                <div id="cart-empty-message" class="text-center py-6 text-lg opacity-70">Your cart is empty.</div>
+                <div class="flex justify-between items-center pt-4 border-t border-white/30 mt-4">
+                    <p class="text-xl font-bold">Total: <span id="cart-total-price">0.00 tk</span></p>
+                    <button class="glass-btn checkout-btn px-4 py-3 rounded-lg font-semibold shadow-lg" onclick="showCustomAlert('Processing Order...')">Checkout</button>
+                </div>
+                <button class="absolute top-4 right-4 text-white hover:text-red-400 transition" onclick="toggleCartModal()">X</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="custom-alert" class="fixed inset-0 z-[70] hidden" style="background-color: rgba(0, 0, 0, 0.8);">
+        <div class="flex items-center justify-center min-h-screen">
+            <div class="glass p-8 text-center shadow-2xl rounded-2xl border border-white/30">
+                <p id="alert-message" class="text-2xl font-semibold mb-6 text-teal-300 neon-glow"></p>
+                <button class="glass-btn px-6 py-2 rounded-full" onclick="hideCustomAlert()">Close</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
